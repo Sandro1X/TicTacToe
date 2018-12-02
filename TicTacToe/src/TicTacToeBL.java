@@ -10,6 +10,7 @@ public class TicTacToeBL {
     public TicTacToeBL() {
     }
 
+    //ca. 10 Minuten
     public boolean prove(JLabel label) {
         if (!over) {
             int row = -1;
@@ -55,6 +56,7 @@ public class TicTacToeBL {
         return false;
     }
 
+    //ca. 2 Minuten
     public boolean proveDraw() {
         if (!over) {
             for (int i = 0; i <= 2; i++) {
@@ -69,6 +71,7 @@ public class TicTacToeBL {
         return true;
     }
 
+    //ca. 20 Minuten
     public Color setColor(int i, JLabel label) { //0 = Black, 1 = Red, 2 = Blue
         if (!over) {
             int color = -1;
@@ -103,6 +106,7 @@ public class TicTacToeBL {
         return label.getBackground();
     }
 
+    //ca. 15 Sekunden
     public void restart() {
         for (int i = 0; i <= 2; i++) {
             for (int j = 0; j <= 2; j++) {

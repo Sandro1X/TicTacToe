@@ -21,6 +21,7 @@ public class TicTacToeGUI extends JFrame {
     private static TicTacToeGUI gui = new TicTacToeGUI();
     private int count = 1;
 
+    //ca. 30 Minuten
     public TicTacToeGUI() throws HeadlessException {
         this.setSize(1300, 1300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,6 +86,7 @@ public class TicTacToeGUI extends JFrame {
         }
     }
 
+    //ca. 10 Sekunden
     public void restart(){
         for(int i = 0; i < 9; i++){
             labels[i].setBackground(Color.black);
