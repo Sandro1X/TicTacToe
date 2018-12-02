@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 public class TicTacToeGUI extends JFrame {
@@ -60,8 +61,15 @@ public class TicTacToeGUI extends JFrame {
                         if(e.getComponent().getBackground() == Color.black){
                            count++; 
                         }
-                        e.getComponent().setBackground(bl.getColor(count, (JLabel) e.getComponent()));
-                        bl.prove((JLabel) e.getComponent());
+                        e.getComponent().setBackground(bl.setColor(count, (JLabel) e.getComponent()));
+                        if(bl.prove((JLabel) e.getComponent())){
+                            if(e.getComponent().getBackground() == Color.RED){
+                                JOptionPane.showMessageDialog(null, "Red won!");
+                            }else if(e.getComponent().getBackground() == Color.BLUE){
+                                JOptionPane.showMessageDialog(null, "Blue won!");
+                            }
+                            bl.setOver(true);
+                        }
                     } else if (e.getButton() == 3) {
                         menu.setVisible(true);
                         menu.show(gui, e.getXOnScreen(), e.getYOnScreen());
