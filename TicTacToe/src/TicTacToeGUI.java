@@ -37,7 +37,7 @@ public class TicTacToeGUI extends JFrame {
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bl.setOver(false);
+                bl.setOver(false); //Alles neustarten
                 bl.restart();
                 restart();
                 count = 1;
@@ -47,7 +47,7 @@ public class TicTacToeGUI extends JFrame {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.dispose();
+                gui.dispose(); //Schließen
             }
         });
 
@@ -88,7 +88,7 @@ public class TicTacToeGUI extends JFrame {
 
     //ca. 10 Sekunden
     public void restart(){
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < 9; i++){ //Setze farbe auf schwarz zurück
             labels[i].setBackground(Color.black);
         }
     }
