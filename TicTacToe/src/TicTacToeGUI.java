@@ -2,6 +2,9 @@
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -14,48 +17,32 @@ public class TicTacToeGUI extends JFrame {
 
     private JLabel[] labels = new JLabel[9];
     private TicTacToeBL bl = new TicTacToeBL();
+    private static TicTacToeGUI gui = new TicTacToeGUI();
     private int count = 1;
 
     public TicTacToeGUI() throws HeadlessException {
         this.setSize(800, 600);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3, 3));
 
         JPopupMenu menu = new JPopupMenu();
-        menu.add(new JMenuItem("Restart"));
-        menu.add(new JMenuItem("Close"));
+        JMenuItem item1 = new JMenuItem("Restart");
+        JMenuItem item2 = new JMenuItem("Close");
 
-        menu.addMouseListener(new MouseListener() {
+        menu.add(item1);
+        menu.add(item2);
+        
+        item1.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    menu.setVisible(true);
-                }
-                menu.show(e.getComponent(), e.getX(), e.getY());
+            public void actionPerformed(ActionEvent e) {
+                
             }
-
+        });
+        
+        item2.addActionListener(new ActionListener() {
             @Override
-            public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    menu.setVisible(true);
-                }
-                menu.show(e.getComponent(), e.getX(), e.getY());
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    menu.setVisible(true);
-                }
-                menu.show(e.getComponent(), e.getX(), e.getY());
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+            public void actionPerformed(ActionEvent e) {
+                gui.dispose();
             }
         });
 
@@ -64,41 +51,27 @@ public class TicTacToeGUI extends JFrame {
             labels[i].setBackground(Color.black);
             labels[i].setOpaque(true);
             labels[i].setBorder(BorderFactory.createLineBorder(Color.white));
-            labels[i].setName("" + (i + 1));
+            labels[i].setName("" + i);
             this.add(labels[i]);
-            labels[i].addMouseListener(new MouseListener() {
-
+            labels[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (e.getButton() == 1) {
-                        count++;
+                        if(e.getComponent().getBackground() == Color.black){
+                           count++; 
+                        }
                         e.getComponent().setBackground(bl.getColor(count, (JLabel) e.getComponent()));
-                    }else if(e.getButton() == 3){
+                        bl.prove((JLabel) e.getComponent());
+                    } else if (e.getButton() == 3) {
                         menu.setVisible(true);
+                        menu.show(gui, e.getXOnScreen(), e.getYOnScreen());
                     }
                 }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                }
             });
-
         }
     }
 
     public static void main(String[] args) {
-        new TicTacToeGUI().setVisible(true);
+        gui.setVisible(true);
     }
 }
