@@ -22,7 +22,7 @@ public class TicTacToeGUI extends JFrame {
     private int count = 1;
 
     public TicTacToeGUI() throws HeadlessException {
-        this.setSize(800, 600);
+        this.setSize(1300, 1300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3, 3));
 
@@ -36,7 +36,10 @@ public class TicTacToeGUI extends JFrame {
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                bl.setOver(false);
+                bl.restart();
+                restart();
+                count = 1;
             }
         });
         
@@ -69,6 +72,9 @@ public class TicTacToeGUI extends JFrame {
                                 JOptionPane.showMessageDialog(null, "Blue won!");
                             }
                             bl.setOver(true);
+                        }else if(bl.proveDraw()){
+                            JOptionPane.showMessageDialog(null, "Nobody won!");
+                            bl.setOver(true);
                         }
                     } else if (e.getButton() == 3) {
                         menu.setVisible(true);
@@ -79,6 +85,12 @@ public class TicTacToeGUI extends JFrame {
         }
     }
 
+    public void restart(){
+        for(int i = 0; i < 9; i++){
+            labels[i].setBackground(Color.black);
+        }
+    }
+    
     public static void main(String[] args) {
         gui.setVisible(true);
     }

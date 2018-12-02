@@ -44,9 +44,29 @@ public class TicTacToeBL {
                 }
             }
 
+            if (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[1][1] != 0) {
+                return true;
+            } else if (field[2][0] == field[1][1] && field[1][1] == field[0][2] && field[1][1] != 0) {
+                return true;
+            }
+
             return false;
         }
         return false;
+    }
+
+    public boolean proveDraw() {
+        if (!over) {
+            for (int i = 0; i <= 2; i++) {
+                for (int j = 0; j <= 2; j++) {
+                    if (field[i][j] == 0) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return true;
     }
 
     public Color setColor(int i, JLabel label) { //0 = Black, 1 = Red, 2 = Blue
@@ -81,6 +101,14 @@ public class TicTacToeBL {
             return label.getBackground();
         }
         return label.getBackground();
+    }
+
+    public void restart() {
+        for (int i = 0; i <= 2; i++) {
+            for (int j = 0; j <= 2; j++) {
+                field[i][j] = 0;
+            }
+        }
     }
 
     public void setOver(boolean over) {
