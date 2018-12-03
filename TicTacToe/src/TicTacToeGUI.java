@@ -57,6 +57,7 @@ public class TicTacToeGUI extends JFrame {
             labels[i].setOpaque(true);
             labels[i].setBorder(BorderFactory.createLineBorder(Color.white));
             labels[i].setName("" + i);
+            labels[i].setComponentPopupMenu(menu);
             this.add(labels[i]);
             labels[i].addMouseListener(new MouseAdapter() {
                 @Override
@@ -78,8 +79,8 @@ public class TicTacToeGUI extends JFrame {
                             bl.setOver(true);
                         }
                     } else if (e.getButton() == 3) {
-                        menu.setVisible(true);
-                        menu.show(gui, e.getXOnScreen(), e.getYOnScreen());
+//                        menu.setVisible(true);
+//                        menu.show(gui, e.getXOnScreen(), e.getYOnScreen());
                     }
                 }
             });
